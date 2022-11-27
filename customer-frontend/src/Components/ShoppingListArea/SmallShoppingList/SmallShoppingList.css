@@ -1,0 +1,65 @@
+.SmallShoppingList {
+	position: fixed;
+    top: 60px;
+    left: 10px;
+    background-color: white;
+    border: 3px solid darkblue;
+    width: 35vw;
+    padding: 10px;
+    max-height: 80vh;
+}
+
+.SmallShoppingList > h3 {
+    margin: 0;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.SmallShoppingList div.item {
+    margin-bottom: 5px;
+}
+
+
+.SmallShoppingList div.item > div {
+    display: inline-block;
+    width: fit-content;
+    height: 20px;
+    margin-left: 25px;
+    /* margin-bottom: 10px; */
+}
+
+.SmallShoppingList span {
+    display: inline-block;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.SmallShoppingList div#name {
+    width: 25%;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+
+.SmallShoppingList div#name:hover {
+    overflow: visible;
+}
+
+.SmallShoppingList span.pratim {
+    font-size: smaller;
+    color: darkblue;
+}
+
+.SmallShoppingList button {
+    margin: 5px;
+    font-size: large;
+}
+
+.SmallShoppingList div#kaftorim {
+    margin-right: 70%;
+}
+
+.SmallShoppingList button#siyum {
+    background-color: darkblue;
+    color: white;
+}

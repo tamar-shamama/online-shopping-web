@@ -1,0 +1,17 @@
+.Layout {
+    height: 100%;
+}
+
+/* .Layout div#actualApp {
+    height: 50%;
+} */
+
+
+.Layout footer {
+    height: 30px;
+    border: 1px solid yellow;
+    box-sizing: border-box;
+    font-size: smaller;
+    text-align: center;
+}
+

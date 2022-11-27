@@ -1,0 +1,91 @@
+.HeaderAndMenu {
+    /* height: 16vh; */
+    height: 100px;
+    border: 1px solid green;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+
+.HeaderAndMenu header {
+    font-size: 35px;
+    color: darkblue;
+    font-weight: bold;
+    height: 70%;
+    box-sizing: border-box;
+}
+
+
+.HeaderAndMenu div#menu {
+    height: 30%;
+    box-sizing: border-box;
+    background-color: darkblue;
+    color: white;
+}
+
+.HeaderAndMenu div#menu > a {
+    text-decoration: none;
+}
+
+
+.HeaderAndMenu div#menu > .menu-options {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0 0 0 30px;
+    background-color: darkblue;
+    width: fit-content;
+    color: white;
+    border: none;
+}
+
+.HeaderAndMenu div.dropdown-options {
+    position: absolute;
+    background-color: darkblue;
+    width: fit-content;
+}
+
+
+.HeaderAndMenu div.dropdown-options > * {
+    display: block;
+    padding: 8px 10px 5px 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.HeaderAndMenu div.dropdown-options > a:hover {
+    color: yellow;
+}
+
+.HeaderAndMenu div#drop-cat {
+    right: 120px;
+}
+
+.HeaderAndMenu div#drop-comp {
+    right: 220px;
+}
+
+
+/* .HeaderAndMenu div.Dropdown-menu {
+    background-color: darkblue;
+    position: absolute;
+    
+}
+
+.HeaderAndMenu div.Dropdown-option {
+    margin-top: 8px;
+} */
+
+.HeaderAndMenu > button#sList {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+    text-decoration: none;
+    border: none;
+    background-color: white;
+}
+
+.HeaderAndMenu button:hover {
+    cursor: pointer;
+}

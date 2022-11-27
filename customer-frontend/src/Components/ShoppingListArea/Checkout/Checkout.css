@@ -1,0 +1,13 @@
+.Checkout {
+	min-height: 66vh;
+}
+
+.Checkout input {
+    margin: 5px 5px 5px 25px;
+    font-size: 20px;
+}
+
+.Checkout span {
+    margin: 5px;
+    font-size: 20px;
+}

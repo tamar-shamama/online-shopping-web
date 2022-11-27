@@ -1,0 +1,37 @@
+.BigShoppingList {
+    min-height: 66vh;
+}
+
+.BigShoppingList span {
+
+    display: inline-block;
+    width: 200px;
+    font-size: larger;
+}
+
+.BigShoppingList span.shem {
+    width: 300px;
+}
+
+.BigShoppingList div#koteret {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.BigShoppingList div#mutzar {
+    margin-bottom: 20px;
+}
+
+.BigShoppingList div#tashlum {
+    color: darkblue;
+    font-weight: bold;
+}
+
+.BigShoppingList a {
+    font-size: 25px;
+    padding: 10px;
+}
+
+.BigShoppingList div#links {
+    margin-right: 70%;
+}
