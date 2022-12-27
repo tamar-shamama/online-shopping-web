@@ -24,11 +24,43 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	
-	@GetMapping("/get")
+	@GetMapping("/get/all")
 	public List<Product> getAllProducts() {
 		
 		try {
 			return this.customerService.getAllProducts();
+		} catch (CustomerException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	@GetMapping("/get/cat")
+	public List<Product> getAllProductsByCategory(String category) {
+		
+		try {
+			return this.customerService.getProductsByCategory(category);
+		} catch (CustomerException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	@GetMapping("/get/comp")
+	public List<Product> getAllProductsByCompany(String company) {
+		
+		try {
+			return this.customerService.getProductsByCompany(company);
+		} catch (CustomerException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	@GetMapping("/get/searchWord")
+	public List<Product> getAllProductsBySearchWord(String word) {
+		
+		try {
+			return this.customerService.getProductsBySearchword(word);
 		} catch (CustomerException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
