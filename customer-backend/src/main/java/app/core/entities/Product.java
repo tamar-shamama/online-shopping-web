@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data @AllArgsConstructor @NoArgsConstructor @ToString(exclude = "tags")
+@Data @AllArgsConstructor @NoArgsConstructor @ToString(exclude = {"tags"})
 @Entity
 @EqualsAndHashCode(of = "code")
 public class Product {
@@ -50,11 +50,16 @@ public class Product {
 		List<String> t = new ArrayList<>();
 		System.out.println("activated");
 		
-		for (int i = 0; i < tags.size(); i++) {
-			String name =tags.get(i).getTagName();
-			t.add(name);
+		if (!tags.isEmpty()) {
+			
+			for (int i = 0; i < tags.size(); i++) {
+				String name =tags.get(i).getTagName();
+				t.add(name);
+			}
+			return t;
 		}
-		return t;
+		return null;
+		
 	}
 	
 	
