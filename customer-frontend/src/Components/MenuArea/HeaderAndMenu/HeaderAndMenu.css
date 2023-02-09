@@ -89,3 +89,8 @@
 .HeaderAndMenu button:hover {
     cursor: pointer;
 }
+
+.HeaderAndMenu a#all {
+    color: yellow;
+    font-size: 18px;
+}

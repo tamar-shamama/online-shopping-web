@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -35,8 +36,8 @@ public class CustomerController {
 	}
 	
 	
-	@GetMapping("/get/cat")
-	public List<Product> getAllProductsByCategory(String category) {
+	@GetMapping("/get/cat/{category}")
+	public List<Product> getAllProductsByCategory(@PathVariable String category) {
 		
 		try {
 			return this.customerService.getProductsByCategory(category);
@@ -45,8 +46,8 @@ public class CustomerController {
 		}
 	}
 	
-	@GetMapping("/get/comp")
-	public List<Product> getAllProductsByCompany(String company) {
+	@GetMapping("/get/comp/{company}")
+	public List<Product> getAllProductsByCompany(@PathVariable String company) {
 		
 		try {
 			return this.customerService.getProductsByCompany(company);
@@ -56,8 +57,8 @@ public class CustomerController {
 	}
 	
 	
-	@GetMapping("/get/searchWord")
-	public List<Product> getAllProductsBySearchWord(String word) {
+	@GetMapping("/get/searchWord/{word}")
+	public List<Product> getAllProductsBySearchWord(@PathVariable String word) {
 		
 		try {
 			return this.customerService.getProductsBySearchword(word);

@@ -56,10 +56,9 @@ public class Product {
 				String name =tags.get(i).getTagName();
 				t.add(name);
 			}
-			return t;
 		}
-		return null;
 		
+		return t;
 	}
 	
 	

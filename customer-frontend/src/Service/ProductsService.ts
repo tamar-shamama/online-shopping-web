@@ -1,5 +1,7 @@
+import axios from "axios";
 import ProductModel from "../Models/ProductModel";
 import { productsStore } from "../Redux/ProductsState";
+import appConfig from "../Utils/Config";
 
 class ProducstService {
 
@@ -9,8 +11,11 @@ class ProducstService {
     public async getAllProducts(): Promise<ProductModel[]> {
         
         if (productsStore.getState().products.length === 0) {
+
+            const response = await axios.get<ProductModel[]>(appConfig.customerUrl + "get/all");
+            const products = response.data;
+            return products;
             
-            // ...
         }
         return productsStore.getState().products;
     }
@@ -22,7 +27,10 @@ class ProducstService {
         
         if (productsStore.getState().products.length === 0) {
             
-            // ...
+            const response = await axios.get<ProductModel[]>(appConfig.customerUrl + "get/cat/" + category);
+            const products = response.data;
+            return products;
+            
         } else {
             
             const allProd = productsStore.getState().products;
@@ -45,7 +53,10 @@ class ProducstService {
         
         if (productsStore.getState().products.length === 0) {
             
-            // ...
+            const response = await axios.get<ProductModel[]>(appConfig.customerUrl + "get/comp/" + company);
+            const products = response.data;
+            return products;
+
         } else {
             
             const allProd = productsStore.getState().products;
@@ -69,7 +80,11 @@ class ProducstService {
         
         if (productsStore.getState().products.length === 0) {
     
-            // ...
+            console.log(appConfig.customerUrl + "get/searchWord/" + word);
+            const response = await axios.get<ProductModel[]>(appConfig.customerUrl + "get/searchWord/" + word);
+            const products = response.data;
+            return products;
+
         } else {
 
             const allProd = productsStore.getState().products;

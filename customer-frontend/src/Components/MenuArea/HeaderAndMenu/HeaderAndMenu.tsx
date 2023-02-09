@@ -1,13 +1,16 @@
 import "./HeaderAndMenu.css";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import SmallShoppingList from "../../ShoppingListArea/SmallShoppingList/SmallShoppingList";
 
 
 function HeaderAndMenu(): JSX.Element {
 
 
-    // open and close shopping list
+    const navigate = useNavigate();
+
+
+    // open and close customer's shopping list
     const [on, setOn] = useState<boolean>(false);
 
     function showList() {
@@ -19,7 +22,7 @@ function HeaderAndMenu(): JSX.Element {
     }
 
 
-    // create a dropdown menu
+    // create a dropdown menu for category and company
 
     const [clickCat, setClickCat] = useState<boolean>(false);
     const [clickComp, setClickComp] = useState<boolean>(false);
@@ -40,7 +43,6 @@ function HeaderAndMenu(): JSX.Element {
                 break;
                 
 
-
             case "comp":
 
                 if (!clickComp) {
@@ -55,8 +57,15 @@ function HeaderAndMenu(): JSX.Element {
     }
 
 
-    const [categories] = useState<string[]>(["aaa", "bbb", "ccc", "ddd"]);
-    const [companies] = useState<string[]>(["ee", "ffffff", "gggg", "hhhhhhh"]);
+    const [categories] = useState<string[]>(["aaa", "bbb", "ccc", "candies"]);
+    const [companies] = useState<string[]>(["ee", "ffffff", "gggg", "LOL"]);
+
+
+    // create free search on searchbar
+    function searchByUserInput() {
+        const userWord = document.getElementById("searchWord") as any;
+        navigate("/products/word/" + userWord.value);
+    }
 
 
 
@@ -65,17 +74,24 @@ function HeaderAndMenu(): JSX.Element {
     return (
         <div className="HeaderAndMenu">
 
-            <header>סופר דקר - הכי יקר בכפר</header>
+            <header>סופר יקיר - הכי יקר בעיר</header>
 
             <div id="menu">
+
                 <NavLink to={"/home"} className="menu-options">עמוד הבית</NavLink>
+                
                 <button className="dropdown menu-options" onClick={() => drop("cat")}>קטגוריה</button>
+                
                 <button className="dropdown menu-options" onClick={() => drop("comp")}>יצרן</button>
+                
                 <button className="dropdown menu-options">אחרונים</button>
+                
                 <div className="menu-options">
-                    <input type="text" placeholder="חיפוש" />
-                    <input type="submit" />
+                    <input type="text" placeholder="חיפוש" id="searchWord" />
+                    <input type="submit" onClick={searchByUserInput} />
                 </div>
+
+                <NavLink to={"/products/all/all"} id="all">לרשימת המוצרים המלאה</NavLink>
             </div>
 
 
