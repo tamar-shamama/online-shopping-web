@@ -18,27 +18,27 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data @AllArgsConstructor @NoArgsConstructor @ToString(exclude = {"tags"})
+@Data @AllArgsConstructor @NoArgsConstructor @ToString(exclude = {"tags", "image"})
 @Entity
 @EqualsAndHashCode(of = "code")
 public class Product {
 	
 	@Id
-	public int code;
-	public String name;
-	public double price;
-	public String company;
-	public String category;
-	public String image;
-	public double amount;
+	private int code;
+	private String name;
+	private double price;
+	private String company;
+	private String category;
+	private String image;
+	private double amount;
 	
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable (
 			name = "products_vs_tags",
 			joinColumns = @JoinColumn(name = "product_code"),
 			inverseJoinColumns = @JoinColumn(name = "tag_id"))
-	@JsonIgnore
 	public List<Tags> tags = new ArrayList<>();
 	
 	

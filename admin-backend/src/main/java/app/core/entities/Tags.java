@@ -27,6 +27,7 @@ import lombok.ToString;
 
 public class Tags {
 	
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String tagName;
@@ -42,8 +43,10 @@ public class Tags {
 	
 	
 	
-	
-	
+
+
+
+
 	
 	
 	
