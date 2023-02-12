@@ -33,7 +33,7 @@ function ProductsView(): JSX.Element {
                     </> 
                 }
 
-                {param.type === "searchWord" &&
+                {param.type === "word" &&
                     <>
                         <span>לפי מילת חיפוש: </span>
                         <span>{param.search}</span>

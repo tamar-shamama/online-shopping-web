@@ -24,13 +24,13 @@ import lombok.ToString;
 public class Product {
 	
 	@Id
-	public int code;
-	public String name;
-	public double price;
-	public String company;
-	public String category;
-	public String image;
-	public double amount;
+	private int code;
+	private String name;
+	private double price;
+	private String company;
+	private String category;
+	private String image;
+	private double amount;
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -54,6 +54,13 @@ public class Product {
 	
 	public void buyByWeight(int weight) {
 		this.amount = this.amount - weight;
+	}
+	
+	@JsonIgnore
+	public List<String> getTagsNames() {
+		List<String> tagsNames = new ArrayList<>();
+		this.tags.forEach(t -> tagsNames.add(t.getTagName()));
+		return tagsNames;
 	}
 	
 

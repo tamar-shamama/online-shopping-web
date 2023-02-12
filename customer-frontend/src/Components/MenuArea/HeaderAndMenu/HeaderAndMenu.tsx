@@ -1,13 +1,31 @@
 import "./HeaderAndMenu.css";
-import { useState } from "react";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import SmallShoppingList from "../../ShoppingListArea/SmallShoppingList/SmallShoppingList";
+import productsService from "../../../Service/ProductsService";
 
 
 function HeaderAndMenu(): JSX.Element {
 
-
     const navigate = useNavigate();
+    const [categories, setCategories] = useState<string[]>([]);
+    const [companies, setCompanies] = useState<string[]>([]);
+
+
+    useEffect(()=>{
+
+        (async() => {
+
+            const categories = await productsService.getAllCategories();
+            setCategories(categories);
+
+            const companies = await productsService.getAllCompanies();
+            setCompanies(companies);
+        })();
+
+    },[]);
+
+
 
 
     // open and close customer's shopping list
@@ -53,13 +71,10 @@ function HeaderAndMenu(): JSX.Element {
                 setClickCat(false);
                 break;
         }
-        
     }
 
 
-    const [categories] = useState<string[]>(["aaa", "bbb", "ccc", "candies"]);
-    const [companies] = useState<string[]>(["ee", "ffffff", "gggg", "LOL"]);
-
+    
 
     // create free search on searchbar
     function searchByUserInput() {
@@ -99,10 +114,7 @@ function HeaderAndMenu(): JSX.Element {
             {clickCat &&
                  <>
                     <div className="dropdown-options" id="drop-cat">
-                        <NavLink to={"/products/cat/" + categories[0]}>{categories[0]}</NavLink>
-                        <NavLink to={"/products/cat/" + categories[1]}>{categories[1]}</NavLink>
-                        <NavLink to={"/products/cat/" + categories[2]}>{categories[2]}</NavLink>
-                        <NavLink to={"/products/cat/" + categories[3]}>{categories[3]}</NavLink>
+                        {categories.map(cat => (<NavLink to={"/products/cat/" + cat}>{cat}</NavLink>))}
                     </div>
                  </>
             }
@@ -110,10 +122,7 @@ function HeaderAndMenu(): JSX.Element {
             {clickComp &&
                  <>
                     <div className="dropdown-options" id="drop-comp">
-                        <NavLink to={"/products/comp/" + companies[0]}>{companies[0]}</NavLink>
-                        <NavLink to={"/products/comp/" + companies[1]}>{companies[1]}</NavLink>
-                        <NavLink to={"/products/comp/" + companies[2]}>{companies[2]}</NavLink>
-                        <NavLink to={"/products/comp/" + companies[3]}>{companies[3]}</NavLink>
+                        {companies.map(comp => (<NavLink to={"/products/comp/" + comp}>{comp}</NavLink>))}
                     </div>
                  </>
             }

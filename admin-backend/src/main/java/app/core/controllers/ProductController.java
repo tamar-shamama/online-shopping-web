@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,18 +30,21 @@ public class ProductController {
 	ProductService productService;
 	
 	
+	
+	
+	
 	@PostMapping("tag/{tagName}")
 	public int createTag(@PathVariable String tagName) {
 		
 		Tags tag = new Tags(0, tagName, null);
-		System.out.println("=======" + tag.toString());
-		
 		try {
 			return productService.createTag(tag);
 		} catch (AdminException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+	
+	
 	
 	
 	@PostMapping("tag/{productCode}/{tagName}")
@@ -52,6 +58,8 @@ public class ProductController {
 	}
 	
 	
+	
+	
 	@PostMapping("tag/multiple/{productCode}")
 	public void addMultipleTagsToProduct(@PathVariable int productCode, @RequestBody List<String> tagsNames) {
 		
@@ -61,6 +69,8 @@ public class ProductController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
+	
+	
 	
 	
 	@PostMapping("create")
@@ -73,5 +83,64 @@ public class ProductController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
+	
+	
+	
+	@DeleteMapping("{code}")
+	public void deleteProduct(@PathVariable int code) {
+		
+		try {
+			productService.deleteProduct(code);
+		} catch (AdminException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	
+	
+	@PutMapping
+	public void updateProduct(@RequestBody Product product) {
+		try {
+			productService.updateProduct(product);
+		} catch (AdminException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	
+	@GetMapping
+	public List<Product> getAllProducts() {
+		try {
+			return productService.getAllProducts();
+		} catch (AdminException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	@GetMapping("{cat}")
+	public List<Product> getProductsByCategory(@PathVariable String cat) {
+		try {
+			return productService.getProductsByCategory(cat);
+		} catch (AdminException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	
+	@GetMapping("comp/{comp}")
+	public List<Product> getProductsByCompany(@PathVariable String comp) {
+		try {
+			return productService.getProductsByCompany(comp);
+		} catch (AdminException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+	
+	
+	
 
 }

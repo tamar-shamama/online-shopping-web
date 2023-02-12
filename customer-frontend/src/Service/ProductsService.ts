@@ -105,6 +105,22 @@ class ProducstService {
     }
 
 
+    public async getAllCategories(): Promise<string[]> {
+
+        const response = await axios.get<string[]>(appConfig.customerUrl + "categories");
+        const categories = response.data;
+        return categories;
+    }
+
+
+    public async getAllCompanies(): Promise<string[]> {
+
+        const response = await axios.get<string[]>(appConfig.customerUrl + "companies");
+        const companies = response.data;
+        return companies;
+    }
+
+
 }
 
 const productsService = new ProducstService();

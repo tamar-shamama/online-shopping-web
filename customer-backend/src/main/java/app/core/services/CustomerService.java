@@ -3,6 +3,8 @@ package app.core.services;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.core.entities.Product;
+import app.core.entities.Tags;
 import app.core.exceptions.CustomerException;
 import app.core.repositories.ProductRepository;
 
@@ -47,7 +50,7 @@ public class CustomerService {
 		for (int i = 0; i < productsList.size(); i++) {
 			
 			Product p = productsList.get(i);
-			if (p.category.equals(cat)) {
+			if (p.getCategory().equals(cat)) {
 				productsListByCat.add(p);
 			}
 		}
@@ -67,7 +70,7 @@ public class CustomerService {
 		for (int i = 0; i < productsList.size(); i++) {
 			
 			Product p = productsList.get(i);
-			if (p.company.equals(comp)) {
+			if (p.getCompany().equals(comp)) {
 				productsListBycomp.add(p);
 			}
 		}
@@ -123,6 +126,22 @@ public class CustomerService {
 				productsListBySearchWord.add(productsList.get(i));
 			}
 		}
+	}
+	
+	
+	public List<String> getAllCategories() {
+		List<Product> productsList = productRepository.findAll();
+		List<String> categoriesList = new ArrayList<>();
+		productsList.stream().forEach(p -> categoriesList.add(p.getCategory()));
+		return categoriesList.stream().distinct().toList();
+	}
+	
+	
+	public List<String> getAllCompanies() {
+		List<Product> productsList = productRepository.findAll();
+		List<String> companyList = new ArrayList<>();
+		productsList.stream().forEach(p -> companyList.add(p.getCompany()));
+		return companyList.stream().distinct().toList();
 	}
 	
 

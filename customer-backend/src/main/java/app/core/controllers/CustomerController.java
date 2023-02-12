@@ -66,5 +66,16 @@ public class CustomerController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
+	
+	
+	@GetMapping("/categories")
+	public List<String> getAllCategories() {
+		return customerService.getAllCategories();
+	}
+	
+	@GetMapping("/companies")
+	public List<String> getAllCompanies() {
+		return customerService.getAllCompanies();
+	}
 
 }
